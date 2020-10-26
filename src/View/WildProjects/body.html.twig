@@ -1,0 +1,251 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Tous les projets
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1 class="favorite">Favoris</h1>
+        <div class="container-fluide">
+                <div class="row">
+
+                    {# {% for card in cards %}
+                        {%  if card.id == 0 %}
+                            <div class="col-3">
+                                {% include 'card.html.twig' %}
+                            </div>
+                        {% endif %}
+                            <div class="col-3 offset-1">
+                                {% include 'card.html.twig' %}
+                            </div>
+                    {% endfor %} #}
+
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/300?random=1" class="card-img-top" alt="img1">
+                            <div class="card-body">
+                                <h5 class="card-title">HP Décoration</h5>
+                                <p class="card-text">Le projet le plus home staging de tous les temps!! Votre intérieur
+                                    au carré.</p>
+                                <a href="#" class="btn btn-primary">Décorer Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/300?random=2" class="card-img-top" alt="img2">
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Fat</h5>
+                                <p class="card-text">Le plus gros et gras projet de tous les temps!! Le projet qui vous
+                                    fait déculpabiliser.</p>
+                                <a href="#" class="btn btn-primary">Manger Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/300?random=3" class="card-img-top" alt="img3">
+                            <div class="card-body">
+                                <h5 class="card-title">Darwin</h5>
+                                <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                    manger skater tout est possible. </p>
+                                <a href="#" class="btn btn-primary">Toujours Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/300?random=6" class="card-img-top" alt="img6">
+                            <div class="card-body">
+                                <h5 class="card-title">Darwin</h5>
+                                <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                    manger skater tout est possible. </p>
+                                <a href="#" class="btn btn-primary">Toujours Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/300?random=4" class="card-img-top" alt="img4">
+                            <div class="card-body">
+                                <h5 class="card-title">Darwin</h5>
+                                <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                    manger skater tout est possible. </p>
+                                <a href="#" class="btn btn-primary">Toujours Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="https://picsum.photos/200/300?random=5" class="card-img-top" alt="img5">
+                            <div class="card-body">
+                                <h5 class="card-title">Darwin</h5>
+                                <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                    manger skater tout est possible. </p>
+                                <a href="#" class="btn btn-primary">Toujours Plus</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </section>
+    <section class="project3">
+        <h1>Projet 3</h1>
+        <div class="container-fluide">
+            <div class="row">
+
+                {# {% for card in cards %}
+                        {%  if card.id == 0 %}
+                            <div class="col-3">
+                                {% include card.html.twig %}
+                            </div>
+                        {% endif %}
+                            <div class="col-3 offset-1">
+                                {% include card.html.twig %}
+                            </div>
+                    {% endfor %} #}
+
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=1" class="card-img-top" alt="img1">
+                        <div class="card-body">
+                            <h5 class="card-title">HP Décoration</h5>
+                            <p class="card-text">Le projet le plus home staging de tous les temps!! Votre intérieur au
+                                carré.</p>
+                            <a href="#" class="btn btn-primary">Décorer Plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=2" class="card-img-top" alt="img2">
+                        <div class="card-body">
+                            <h5 class="card-title">Basic Fat</h5>
+                            <p class="card-text">Le plus gros et gras projet de tous les temps!! Le projet qui vous fait
+                                déculpabiliser.</p>
+                            <a href="#" class="btn btn-primary">Manger Plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=3" class="card-img-top" alt="img3">
+                        <div class="card-body">
+                            <h5 class="card-title">Darwin</h5>
+                            <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                manger skater tout est possible. </p>
+                            <a href="#" class="btn btn-primary">Toujours Plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="project2">
+        <h1>Projet 2</h1>
+        <div class="container-fluide">
+            <div class="row">
+
+                {# {% for card in cards %}
+                        {%  if card.id == 0 %}
+                            <div class="col-3">
+                                {% include card.html.twig %}
+                            </div>
+                        {% endif %}
+                            <div class="col-3 offset-1">
+                                {% include card.html.twig %}
+                            </div>
+                    {% endfor %} #}
+
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=1" class="card-img-top" alt="img1">
+                        <div class="card-body">
+                            <h5 class="card-title">HP Décoration</h5>
+                            <p class="card-text">Le projet le plus home staging de tous les temps!! Votre intérieur au
+                                carré.</p>
+                            <a href="#" class="btn btn-primary">Décorer Plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=2" class="card-img-top" alt="img2">
+                        <div class="card-body">
+                            <h5 class="card-title">Basic Fat</h5>
+                            <p class="card-text">Le plus gros et gras projet de tous les temps!! Le projet qui vous fait
+                                déculpabiliser.</p>
+                            <a href="#" class="btn btn-primary">Manger Plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=3" class="card-img-top" alt="img3">
+                        <div class="card-body">
+                            <h5 class="card-title">Darwin</h5>
+                            <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                manger skater tout est possible. </p>
+                            <a href="#" class="btn btn-primary">Toujours Plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="project1">
+        <h1>Projet 1</h1>
+        <div class="container-fluide">
+            <div class="row">
+
+                {# {% for card in cards %}
+                        {%  if card.id == 0 %}
+                            <div class="col-3">
+                                {% include card.html.twig %}
+                            </div>
+                        {% endif %}
+                            <div class="col-3 offset-1">
+                                {% include card.html.twig %}
+                            </div>
+                    {% endfor %} #}
+
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=1" class="card-img-top" alt="img1">
+                        <div class="card-body">
+                            <h5 class="card-title">HP Décoration</h5>
+                            <p class="card-text">Le projet le plus home staging de tous les temps!! Votre intérieur au
+                                carré.</p>
+                            <a href="#" class="btn btn-primary">Décorer Plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=2" class="card-img-top" alt="img2">
+                        <div class="card-body">
+                            <h5 class="card-title">Basic Fat</h5>
+                            <p class="card-text">Le plus gros et gras projet de tous les temps!! Le projet qui vous fait
+                                déculpabiliser.</p>
+                            <a href="#" class="btn btn-primary">Manger Plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <img src="https://picsum.photos/200/300?random=3" class="card-img-top" alt="img3">
+                        <div class="card-body">
+                            <h5 class="card-title">Darwin</h5>
+                            <p class="card-text">Le projet le plus écolo de tous les temps!! Travailler, s'amuser,
+                                manger skater tout est possible. </p>
+                            <a href="#" class="btn btn-primary">Toujours Plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
