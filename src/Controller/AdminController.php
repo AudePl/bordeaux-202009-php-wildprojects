@@ -5,12 +5,17 @@ namespace App\Controller;
 
 
 use App\Model\AdminManager;
-use App\Model\ItemManager;
 use App\Model\LangagueManager;
+use App\Model\PictureManager;
 use App\Model\ProjectManager;
+use App\Service\FormValidator;
+use App\Service\LogAccess;
+use App\Service\ProjectValidator;
+
 
 class AdminController extends AbstractController
 {
+
     public function index()
     {
         $adminManager = new AdminManager();
@@ -31,15 +36,13 @@ class AdminController extends AbstractController
      */
     public function show(int $id)
     {
-        $adminManager = new AdminManager();
-        $project = $adminManager->selectOneById($id);
-        $language = $adminManager->selectLanguageNameById($id);
-        $picture = $adminManager->selectMainPictureProject($id);
-
-        return $this->twig->render('Admin/show.html.twig', [
+        $projectManager = new ProjectManager();
+        $pictureManager = new PictureManager();
+        $project = $projectManager->selectInfoProjectByIdProject($id);
+        $pictures = $pictureManager->selectNamePictureById($id);
+        return $this->twig->render('Home/Project.html.twig', [
             'project' => $project,
-            'language' => $language,
-            'picture' => $picture,
+            'pictures' => $pictures
         ]);
     }
     /**
@@ -61,37 +64,32 @@ class AdminController extends AbstractController
         $errorMessages = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (empty($_POST['isFavorite'])) {
+                $_POST['isFavorite'] = 0;
+            } else {
+                $_POST['isFavorite'] = 1;
+            }
             $project = [
                 'id' => intval($project['id']),
                 'title' => $_POST['title'],
                 'description' => $_POST['description'],
                 'promo' => $_POST['promo'],
-                'type_of_project' => intval($_POST['type-of-project']),
+                'type_of_project' => intval($_POST['type_of_project']),
                 'language_id' => intval($_POST['language']),
                 'is_favorite' => $_POST['isFavorite']
             ];
-            if (empty($_POST["title"])) {
-                $errorMessages ['title'] = "Tu dois entrer un titre";
-            }
-            if (intval($_POST["type-of-project"]) === 0) {
-                $errorMessages ['type-of-project'] = "Tu dois sélectionner un type de projet";
-            }
-            if (intval($_POST["language"]) === 0) {
-                $errorMessages ['language'] = "Tu dois sélectionner un language";
-            }
-            if (empty($_POST["promo"])) {
-                $errorMessages ['promo'] = "Tu dois rentrer une promo";
-            }
-            if (strlen($_POST["description"]) === 0) {
-                $errorMessages ['description'] = "Tu dois entrer une descritpion";
-            }
+
+            $formValidator = new ProjectValidator($_POST);
+            $formValidator->checkAll();
+            $errorMessages = $formValidator->getErrors();
+
             if (empty($errorMessages)) {
                 $projectManager = new ProjectManager();
                 $projectManager->update($project);
                 header('Location: /Project/show/' . $id);
             }
         }
-        return $this->twig->render('Home/newProject.html.twig', [
+        return $this->twig->render('Admin/edit.html.twig', [
             'errors' => $errorMessages,
             'languages' => $languages,
             'project' => $project
@@ -113,25 +111,15 @@ class AdminController extends AbstractController
                 'title' => $_POST['title'],
                 'description' => $_POST['description'],
                 'promo' => $_POST['promo'],
-                'type_of_project' => intval($_POST['type-of-project']),
+                'type_of_project' => intval($_POST['type_of_project']),
                 'language_id' => intval($_POST['language']),
                 'is_favorite' => $_POST['isFavorite']
             ];
-            if (empty($_POST["title"])) {
-                $errorMessages ['title'] = "Tu dois entrer un titre";
-            }
-            if (intval($_POST["type-of-project"]) === 0) {
-                $errorMessages ['type-of-project'] = "Tu dois sélectionner un type de projet";
-            }
-            if (intval($_POST["language"]) === 0) {
-                $errorMessages ['language'] = "Tu dois sélectionner un language";
-            }
-            if (empty($_POST["promo"])) {
-                $errorMessages ['promo'] = "Tu dois rentrer une promo";
-            }
-            if (strlen($_POST["description"]) === 0) {
-                $errorMessages ['description'] = "Tu dois entrer une descritpion";
-            }
+
+            $formValidator = new ProjectValidator($_POST);
+            $formValidator->checkAll();
+            $errorMessages = $formValidator->getErrors();
+
             if (empty($errorMessages)) {
                 $projectManager = new ProjectManager();
                 $id = $projectManager->insert($project);
