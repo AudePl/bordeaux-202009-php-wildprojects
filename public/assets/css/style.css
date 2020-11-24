@@ -113,7 +113,7 @@ h3 {
 }
 .card-img-top {
     border: black .5px solid;
-
+    height: 12em;
 }
 .card:hover {
     transform: scale(1.05);

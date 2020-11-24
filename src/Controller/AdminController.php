@@ -103,7 +103,7 @@ class AdminController extends AbstractController
             'errors' => $errorMessages,
             'languages' => $languages,
             'project' => $project,
-            'edit'=> true,
+            'edit' => true,
         ]);
     }
 
