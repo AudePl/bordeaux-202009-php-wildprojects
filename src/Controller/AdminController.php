@@ -11,6 +11,8 @@ use App\Model\ProjectManager;
 use App\Service\FormValidator;
 use App\Service\LogAccess;
 use App\Service\ProjectValidator;
+use App\Service\UploadMultipleValidator;
+use App\Service\UploadOneValidator;
 
 
 class AdminController extends AbstractController
@@ -52,6 +54,7 @@ class AdminController extends AbstractController
             'pictures' => $pictures
         ]);
     }
+
     /**
      * @param int $id
      */
@@ -99,15 +102,19 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/edit.html.twig', [
             'errors' => $errorMessages,
             'languages' => $languages,
-            'project' => $project
+            'project' => $project,
+            'edit'=> true,
         ]);
     }
+
     public function add()
     {
         $languageManager = new LangagueManager();
         $languages = $languageManager->selectAll();
         $errorMessages = [];
         $project = [];
+        $errorsUploadMain = [];
+        $errorsUploadMultiple = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['isFavorite'])) {
                 $_POST['isFavorite'] = 0;
@@ -123,20 +130,45 @@ class AdminController extends AbstractController
                 'is_favorite' => $_POST['isFavorite']
             ];
 
+            $uploadOneValidator = new UploadOneValidator($_FILES);
+            $filename = $uploadOneValidator->uploadOne();
+            $errorsUploadMain = $uploadOneValidator->getErrors();
+            $mainPicture = [
+                'name' => $filename,
+                'is_main' => 1,
+            ];
+            $uploadMultipleValidator = new UploadMultipleValidator($_FILES);
+            $filenames = $uploadMultipleValidator->uploadMultiple();
+            $errorsUploadMultiple = $uploadMultipleValidator->getErrors();
+            $pictures = [];
+            foreach ($filenames as $filename) {
+                $pictures[] = [
+                    'name' => $filename,
+                    'is_main' => 0,
+                ];
+            }
+
             $formValidator = new ProjectValidator($_POST);
             $formValidator->checkAll();
             $errorMessages = $formValidator->getErrors();
 
-            if (empty($errorMessages)) {
+            if (empty($errorMessages) && empty($errorsUploadMain) && empty($errorsUploadMultiple)) {
                 $projectManager = new ProjectManager();
+                $pictureManager = new PictureManager();
                 $id = $projectManager->insert($project);
+                $pictureManager->insert($mainPicture, $id);
+                foreach ($pictures as $picture) {
+                    $pictureManager->insert($picture, $id);
+                }
                 header('Location: /Project/show/' . $id);
             }
         }
         return $this->twig->render('Admin/add.html.twig', [
             'errors' => $errorMessages,
             'languages' => $languages,
-            'project' => $project
+            'project' => $project,
+            'errorsUploadMain' => $errorsUploadMain,
+            'errorsUploadMultiple' => $errorsUploadMultiple,
         ]);
     }
 
