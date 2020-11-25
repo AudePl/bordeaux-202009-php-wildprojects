@@ -74,6 +74,8 @@ RUN mkdir -p /etc/nginx/sites-enabled
 # Expose port 80 and start php-fpm server
 EXPOSE 80
 
+RUN chmod 777 -R /var
+
 COPY docker-entry.sh /
 RUN chmod +x /docker-entry.sh
 CMD ["/docker-entry.sh"]
